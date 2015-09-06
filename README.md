@@ -52,7 +52,8 @@ function foo() { // function scope
 }
 
 /*
- variables declared globally with let are not attached to the global object. Instead they are attached to the global block.
+ variables declared globally with let are not attached to the global object. 
+ Instead they are attached to the global block.
 */
 
 let foo = 'foo';
