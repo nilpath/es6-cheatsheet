@@ -7,6 +7,12 @@ The main purpose of this document is to give an overview of the new features in 
 
 ## Table of Contents
 
+* [Purpose](#purpose)
+* [Table of Contents](#table-of-contents)
+* [let & const](#let--const)
+ * [let](#let)
+ * [const](#const)
+
 ## let & const
 
 ```let``` and ```const``` are new ways to declare variables, just like ```var```. However, they work a bit differently.
