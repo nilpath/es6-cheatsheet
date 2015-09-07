@@ -18,7 +18,7 @@ The main purpose of this document is to give an overview of the new features in 
 
 ## let & const
 
-```let``` and ```const``` are new ways to declare variables, just like ```var```. However, they work a bit differently.
+There are two new ways to declare variables in EcmaScript 6, ```let``` and ```const```. However, they work a bit differently than ```var```.
 
 ### let
 ```javascript
@@ -90,7 +90,7 @@ for (let x = 0; x < arr.length; x++) {
 ```
 
 ### const
-```const``` works mostly the same as ```let``` with a few differences.
+Declaring constants, using ```const```, works mostly the same as ```let``` but with a few differences.
 
 ```javascript
 /* 
