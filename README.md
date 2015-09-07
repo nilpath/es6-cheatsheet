@@ -12,6 +12,9 @@ The main purpose of this document is to give an overview of the new features in 
 * [let & const](#let--const)
  * [let](#let)
  * [const](#const)
+* [Destructuring](#destructuring)
+ * [Array Destructuring](#array-destructuring)
+ * [Object Destructuring](#object-destructuring)
 
 ## let & const
 
@@ -106,5 +109,107 @@ const MY_CONST; // => SyntaxError.
 
 ```
 
+## Destructuring
+Destructuring is the new way for assigning the properties of an Array or Object in a more readable way
 
+### Array Destructuring
+```javascript
+/*
+  Arrays and other iterables are destructured using brackets.
+*/
 
+[one, two, three] = [1, 2, 3];
+console.log(one, two, three); // => 1 2 3
+
+/*
+ You can declare the destructured variables 
+ by putting var, let or const before the assignment.
+*/
+
+let [one, two, three] = [1, 2, 3];
+
+/*
+ Properties can be skipped using commas.
+*/
+
+var [,,, four] = [1, 2, 3, 4];
+console.log(four); // => 4.
+
+/* 
+  You can create a trailing array using the rest operator.
+*/
+
+var [item, ...otherItems] = ['all', 'my', 'other', 'items'];
+console.log(otherItems); // => ['my', 'other', 'items'].
+
+/*
+ Even nested Arrays can be destructured
+*/
+
+var [one, [[two], [three]], four] = [1, [[2], [3]], 4];
+console.log(one, two, three, four); // => 1 2 3 4.
+
+/*
+ Properties out of bounds are undefined.
+*/
+
+var [isUndefined] = [];
+console.log(isUndefined); // => undefined.
+
+/*
+ default values can be defined for missing values.
+*/
+
+var [isUndefined = true] = [];
+console.log(isUndefined); // => true.
+
+```
+### Object Destructuring
+```javascript
+/*
+  Objects uses curly brackets for destructuring.
+*/
+
+var {name, age} = {name: 'Smith', age: 40};
+console.log(name, age); // => Smith 40.
+
+/*
+ Variables need to be declared when destructuring Objects.
+*/
+
+{ name } = {name: 'Smith'}; // => SyntaxError.
+({ name } = {name: 'Smith'}); // => is OK.
+
+/* 
+ Properties can be renamed with the following syntax {property : new_name}
+*/
+
+var {name: agent} = {name: 'Smith'};
+console.log(agent); // => Smith.
+
+/*
+ Object and Arrays can be destructured in combination.
+*/
+
+var nestedObjectWithArray = {
+  first: 1,
+  array: [2, {third: 3}, 4]
+};
+
+var {first, [second, {third} , fourth]} = nestedObjectWithArray;
+console.log(first, second, third, fourth); // => 1 2 3 4.
+
+/*
+ Missing properties are undefined.
+*/
+
+var {name} = {};
+console.log(name); // => undefined.
+
+/*
+ default values can be defined for missing values.
+*/
+
+var {name = 'Andersson'} = {};
+console.log(name); // => Andersson.
+```
