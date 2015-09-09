@@ -12,6 +12,8 @@ The main purpose of this document is to give an overview of the new features in 
 * [let & const](#let--const)
  * [let](#let)
  * [const](#const)
+* [Default Values](#default-values)
+* [Rest Parameters](#rest-parameters)
 * [Destructuring](#destructuring)
  * [Array Destructuring](#array-destructuring)
  * [Object Destructuring](#object-destructuring)
@@ -107,6 +109,63 @@ const MY_CONST = 'new constant'; // => SyntaxError.
 
 const MY_CONST; // => SyntaxError.
 
+```
+
+## Default Values
+In EcmaScript 6 you can assign default values to parameters in functions...
+
+```javascript
+function printMessage(message = 'hello world') {
+  console.log(message);
+}
+
+printMessage(); // => hello world.
+```
+
+...Arrays and Objects when destructuring...
+
+```javascript
+var {name = 'Andersson'} = {};
+console.log(name); // => Andersson.
+
+var [isUndefined = true] = [];
+console.log(isUndefined); // => true.
+```
+
+...and they are also dynamic, meaning they can be expressions
+
+```javascript
+function getMessage(message = 'hello ' + 'world') {
+  return message; 
+}
+
+console.log(getMessage()); // => hello world.
+
+var {message: getMessage('function as default')} = {};
+console.log(message); // => function as default.
+
+```
+
+## Rest Parameters
+If the last parameter in a function is prefixed with ..., it will be converted to an array containing de remained of the actual arguments being sent to the function when called.
+
+```javascript
+function add(...numbers) {
+  return numbers.reduce((prev, curr) => prev + curr);
+}
+
+var sum = add(1, 2, 3);
+console.log(sum); // => 6.
+```
+
+It replaces the use ```argument``` in variadic functions, making them easier to understand. Also replaces the need to convert ```arguments``` object into an actual Array.
+
+```javascript
+function addUsingArgs() {
+  return arguments.reduce((prev, curr) => prev + curr);
+}
+
+addUsingArgs(1,2,3); // => TypeError.
 ```
 
 ## Destructuring
